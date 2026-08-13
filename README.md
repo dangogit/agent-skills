@@ -9,6 +9,7 @@ results, and is tested with synthetic data before it is shared here.
 | Skill | What it does |
 |---|---|
 | [`invoice-pack`](skills/invoice-pack/) | Collects invoices from email, reconciles Israeli card statements, removes duplicates, and builds a private local report. |
+| [`hebrew-keyboard-mistype`](skills/hebrew-keyboard-mistype/) | Recovers Hebrew or English text typed with the wrong keyboard layout, then continues with the intended request. |
 
 ## Install
 
@@ -20,7 +21,8 @@ directory used by your agent.
 ```bash
 git clone https://github.com/dangogit/agent-skills.git
 mkdir -p ~/.codex/skills
-ln -s "$(pwd)/agent-skills/skills/invoice-pack" ~/.codex/skills/invoice-pack
+SKILL=hebrew-keyboard-mistype
+ln -s "$(pwd)/agent-skills/skills/$SKILL" ~/.codex/skills/"$SKILL"
 ```
 
 ### Claude Code
@@ -28,7 +30,8 @@ ln -s "$(pwd)/agent-skills/skills/invoice-pack" ~/.codex/skills/invoice-pack
 ```bash
 git clone https://github.com/dangogit/agent-skills.git
 mkdir -p ~/.claude/skills
-ln -s "$(pwd)/agent-skills/skills/invoice-pack" ~/.claude/skills/invoice-pack
+SKILL=hebrew-keyboard-mistype
+ln -s "$(pwd)/agent-skills/skills/$SKILL" ~/.claude/skills/"$SKILL"
 ```
 
 Then ask:
@@ -52,11 +55,29 @@ open /tmp/invoice-pack-demo/report.html
 Expected result: two verified matches and one missing invoice. All names,
 amounts, card suffixes, and document identifiers in the demo are synthetic.
 
+## Hebrew Keyboard Mistype
+
+The skill notices when a message looks like English typed while the keyboard
+was on Hebrew, decodes it locally, confirms the interpretation, and continues
+with the request. Real Hebrew stays untouched.
+
+```text
+יקךךם       -> hello
+ביקבל איןד דברןפא -> check this script
+כןס איןד נוע  -> fix this bug
+```
+
+The deterministic decoder can also be used directly:
+
+```bash
+python3 skills/hebrew-keyboard-mistype/scripts/decode.py "יקךךם"
+```
+
 ## פרטיות לפני הכול
 
 הסקילים בריפו עובדים מקומית כברירת מחדל. `invoice-pack` לא מעלה חשבוניות,
-לא משנה הודעות במייל ולא שולח מסמכים לשירות OCR. הדוגמאות והבדיקות מכילות
-מידע סינתטי בלבד.
+ו־`hebrew-keyboard-mistype` לא שולח את הטקסט לשירות חיצוני. הדוגמאות
+והבדיקות מכילות מידע סינתטי בלבד.
 
 ## Invoice Pack בעברית
 

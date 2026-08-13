@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hebrew Keyboard Mistype"
+  short_description: "Recover text typed with the wrong keyboard layout"
+  default_prompt: "Use $hebrew-keyboard-mistype to decode this layout mistype and continue with the recovered request."
