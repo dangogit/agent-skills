@@ -1,8 +1,8 @@
 # Daniel's Agent Skills
 
-Practical, privacy-first skills for AI coding agents. Each skill solves a real
-workflow, ships with deterministic helpers where reliability matters, and is
-tested with synthetic data only.
+This is where I publish the agent skills I use in real work. Each skill lives
+in its own folder, includes a small script when the job needs repeatable
+results, and is tested with synthetic data before it is shared here.
 
 ## Skills
 
