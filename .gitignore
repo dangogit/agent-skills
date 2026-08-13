@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+invoice-pack-input/
+invoice-pack-20*/

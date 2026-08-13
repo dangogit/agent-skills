@@ -1,0 +1,8 @@
+Invoice
+Invoice number SYNTH-METRICOOL-001
+July 12, 2026
+
+Metricool
+Synthetic Example Company
+Monthly subscription: 25.00 USD
+Card **** 7329

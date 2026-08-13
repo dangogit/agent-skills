@@ -1,0 +1,9 @@
+Receipt
+Invoice number SYNTH-OPENAI-001
+Date paid July 8, 2026
+
+OpenAI ChatGPT
+Synthetic Example Customer
+
+₪310.00 paid on July 8, 2026
+Mastercard - 2517

@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate skill
+        run: |
+          python - <<'PY'
+          import pathlib
+          path = pathlib.Path("skills/invoice-pack/SKILL.md")
+          text = path.read_text(encoding="utf-8")
+          assert text.startswith("---\nname: invoice-pack\n")
+          assert "description:" in text.split("---", 2)[1]
+          assert "TODO" not in text
+          PY
+      - name: Compile
+        run: python -m py_compile skills/invoice-pack/scripts/invoice_pack.py
+      - name: Test
+        run: python -m unittest discover -s tests -v
