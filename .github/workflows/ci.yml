@@ -20,7 +20,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Validate skill
-        run: python - <<'PY'
+        run: |
+          python - <<'PY'
           import pathlib
           path = pathlib.Path("skills/invoice-pack/SKILL.md")
           text = path.read_text(encoding="utf-8")
