@@ -22,3 +22,5 @@ matching, ambiguous candidates, duplicate documents, Hebrew XLSX, HTML escaping,
 email-only mode, and refusal to auto-match an image without OCR. The public demo
 produces two matches and one missing invoice. The skill validator, Python compile,
 `git diff --check`, rendered RTL report inspection, and Snyk Code High scan pass.
+GitHub Actions also passes on Python 3.9 and 3.12 after validating the workflow
+syntax and the exact PR branch.
