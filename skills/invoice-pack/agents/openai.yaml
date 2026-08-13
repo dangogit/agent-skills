@@ -1,0 +1,4 @@
+interface:
+  display_name: "Invoice Pack"
+  short_description: "Collect and organize invoices locally"
+  default_prompt: "Use $invoice-pack to collect my invoice documents and build a local reconciliation report."
