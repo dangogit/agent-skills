@@ -23,13 +23,18 @@ jobs:
         run: |
           python - <<'PY'
           import pathlib
-          path = pathlib.Path("skills/invoice-pack/SKILL.md")
-          text = path.read_text(encoding="utf-8")
-          assert text.startswith("---\nname: invoice-pack\n")
-          assert "description:" in text.split("---", 2)[1]
-          assert "TODO" not in text
+          paths = sorted(pathlib.Path("skills").glob("*/SKILL.md"))
+          assert paths
+          for path in paths:
+              text = path.read_text(encoding="utf-8")
+              header = text.split("---", 2)[1]
+              assert f"\nname: {path.parent.name}\n" in f"\n{header}"
+              assert "description:" in header
+              assert "TODO" not in text
           PY
       - name: Compile
-        run: python -m py_compile skills/invoice-pack/scripts/invoice_pack.py
+        run: python -m compileall -q skills
       - name: Test
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s tests -v
+          python -m unittest discover -s skills/hebrew-keyboard-mistype/tests -v

@@ -24,3 +24,22 @@ produces two matches and one missing invoice. The skill validator, Python compil
 `git diff --check`, rendered RTL report inspection, and Snyk Code High scan pass.
 GitHub Actions also passes on Python 3.9 and 3.12 after validating the workflow
 syntax and the exact PR branch.
+
+# Publish hebrew-keyboard-mistype (2026-08-13)
+
+## Plan
+
+- [x] Package the existing decoder as a self-contained public skill.
+- [x] Correct the documented keyboard-layout examples.
+- [x] Add deterministic decoder and Claude Code hook tests.
+- [x] Update repository discovery and installation documentation.
+- [x] Validate, review, and prepare the release PR.
+
+## Review
+
+The skill is local-only and dependency-free beyond Python. Four public examples
+round-trip through the same deterministic mapping used at runtime. Six focused
+tests cover examples, mixed input, standard input, hook output, silent prompts,
+and malformed hook payloads. The suite passes on Python 3.9 and 3.12, the
+official validator passes, the dual-axis review scores 97/100, and Snyk Code
+reports zero high-severity issues.
